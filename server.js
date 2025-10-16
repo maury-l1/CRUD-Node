@@ -16,6 +16,19 @@ app.set('views', './views'); // Ubicació de les plantilles
 app.get('/',(req,res)=>{
     res.render('login')
 });  
+//Middleware
+app.use((req,res,next)=>{
+    const token =req.cookies.access_token
+    req.session={user: null}
+    try{
+        const data=jwt.verify(token,SECRET_JWT_KEY)
+        req.session.user=data
+    }catch(error){
+        req.session.user=null
+    }
+    next() 
+})
+
 
 app.post('/login', async (req,res)=>{
     try{
