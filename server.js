@@ -1,17 +1,19 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
+import bookRoutes from './routes/bookRoute.js';
 import {PORT, SECRET_JWT_KEY} from './config.js';
 import cookieParser from 'cookie-parser';
 import { UserRepository } from './user-repository.js';
+import methodOverride from 'method-override';
 
 const app = express();
 app.use(express.json());
 app.use(cookieParser())
-app.use(express.static("public")); // Càrrega CSS i altres fitxers públics
-app.use(express.urlencoded({ extended: true }));
-
-app.set('view engine', 'ejs'); // Motor de plantilles
-app.set('views', './views'); // Ubicació de les plantilles
+app.use(express.static("public")); // Sirve para usar css en varios ficheros y cargar codigo publico
+app.use(express.urlencoded({ extended: true })); // para leer datos de formulario
+app.use(methodOverride('_method')); // permite usar PUT/DELETE con formularios
+app.set('view engine', 'ejs'); // Motor de plantillas
+app.set('views', './views'); // Ubicacion de las plantillas 
 
 app.get('/',(req,res)=>{
     res.render('login')
@@ -29,6 +31,7 @@ app.use((req,res,next)=>{
     next() 
 })
 
+app.use('/bookRoute', bookRoutes)
 
 app.post('/login', async (req,res)=>{
     try{

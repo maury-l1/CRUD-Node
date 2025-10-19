@@ -1,0 +1,16 @@
+{
+    "books": [
+        {
+            "id": 1,
+            "name": "Prueba de editar libro",
+            "author": "Maury ",
+            "year": "2025"
+        },
+        {
+            "id": 2,
+            "name": "Padre rico, padre pobre",
+            "author": "Robert Kiyosaki",
+            "year": 1997
+        }
+    ]
+}

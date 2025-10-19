@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        
+    </header>
+    <main>
+        <h1>Detalle del Libro</h1>
+          <ul class="product-list">
+        <%# Falta definir book, error en el endpoint detailBook :p %>        
+                    <li class="product-item">
+                        <strong><%= book.name %></strong>
+                        <span>Autor: <%= book.author %></span>
+                        <span>Año: €<%= book.year %></span>
+                    </li>
+                
+            </ul>
+        <a href="/bookRoute">Volver a la lista de libros</a>
+    </main>
+</body>
+</html>

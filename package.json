@@ -2,7 +2,6 @@
   "name": "sistemacrud",
   "version": "1.0.0",
   "type": "module",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,9 +16,19 @@
     "db-local": "^3.1.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "method-override": "^3.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maury-l1/CRUD-Node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maury-l1/CRUD-Node/issues"
+  },
+  "homepage": "https://github.com/maury-l1/CRUD-Node#readme",
+  "description": ""
 }

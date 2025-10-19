@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar libro</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Editar Libro</h1>
+    </header>
+    <main>
+        <form action="/bookRoute/<%= book.id %>?_method=PUT" method="POST">
+            <label for="title">Título:</label>
+            <input type="text" name="name" id="title" value="<%= book.name %>" required>
+
+            <label for="author">Autor:</label>
+            <input type="text" name="author" id="author" value="<%= book.author %>" required>
+
+            <label for="year">Año:</label>
+            <input type="number" name="year" id="year" value="<%= book.year %>" required>
+
+            <button type="submit">Actualizar libro</button>
+        </form>
+
+        <a href="/bookRoute">Volver a la lista de libros</a>
+    </main>
+</body>
+</html>

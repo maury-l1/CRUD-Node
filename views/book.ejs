@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benvingut</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Gestión de libros</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Lista de libros</h2>
+            <ul class="product-list">
+                <% data.books.forEach(book => { %>
+                    <li class="product-item">
+                        <strong><%= book.name %></strong>
+                        <span>Author: <%= book.author %></span>
+                        <span>Price: €<%= book.year %></span>
+                         <span><a href="/bookRoute/<%=book.id %>">Detalle del libro</a></span>
+                        <span><a href="/bookRoute/<%=book.id %>/edit">Editar libro</a></span>
+                    </li>
+                <% }) %>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>

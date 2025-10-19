@@ -1,1 +1,7 @@
-[{"_id":"06e4b580-4499-44f7-b078-3eb395de7509","username":"maury","password":"$2b$10$gTg7xSlz8J3KYcvdhEr7YuRp2iUFc4j0yYHCtFz5x3ec.Q5CJTJzm"}]
+[
+    {
+        "_id": "06e4b580-4499-44f7-b078-3eb395de7509",
+        "username": "maury",
+        "password": "$2b$10$gTg7xSlz8J3KYcvdhEr7YuRp2iUFc4j0yYHCtFz5x3ec.Q5CJTJzm"
+    }
+]
