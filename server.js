@@ -1,6 +1,7 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import bookRoutes from './routes/bookRoute.js';
+import userRoutes from './routes/userRoute.js';
 import {PORT, SECRET_JWT_KEY} from './config.js';
 import cookieParser from 'cookie-parser';
 import { UserRepository } from './user-repository.js';
@@ -32,6 +33,7 @@ app.use((req,res,next)=>{
 })
 
 app.use('/bookRoute', bookRoutes)
+app.use('/userRoute', userRoutes)
 
 app.post('/login', async (req,res)=>{
     try{

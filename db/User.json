@@ -1,12 +1,7 @@
 [
     {
-        "_id": "708c62f6-e8d1-4dc8-9bbb-ea8fd3e5cebf",
-        "username": "admin123",
-        "password": "$2b$10$hNPgTbx9aW3Lfq.fWOZp0uILuW3ImnLwFi89oP51pqiGz4mc3g5n2"
-    },
-    {
-        "_id": "06e4b580-4499-44f7-b078-3eb395de7509",
-        "username": "maury",
-        "password": "$2b$10$gTg7xSlz8J3KYcvdhEr7YuRp2iUFc4j0yYHCtFz5x3ec.Q5CJTJzm"
+        "_id": "c560fdb7-9b62-45d6-a780-ca8e19e32420",
+        "username": "pinga",
+        "password": "$2b$10$oOyUpngG/Xm3/KNGX3IBeO1Ptpw34ix94Knk47PqrymgsUHT51Pg."
     }
 ]
