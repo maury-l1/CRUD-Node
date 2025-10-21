@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Benvingut</title>
     <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
+
 <body>
     <header>
         <h1>Gestión de libros</h1>
@@ -14,18 +16,70 @@
         <section>
             <h2>Lista de libros</h2>
             <ul class="product-list">
-                <% data.books.forEach(book => { %>
+                <% data.books.forEach(book=> { %>
                     <li class="product-item">
-                        <strong><%= book.name %></strong>
+                        <strong>
+                            <%= book.name %>
+                        </strong>
                         <span>Author: <%= book.author %></span>
                         <span>Price: €<%= book.year %></span>
-                         <span><a href="/bookRoute/<%=book.id %>">Detalle del libro</a></span>
+                        <span><a href="/bookRoute/<%=book.id %>">Detalle del libro</a></span>
                         <span><a href="/bookRoute/<%=book.id %>/edit">Editar libro</a></span>
-                        <span><a href="/bookRoute/<%=book.id %>/delete">Eliminar libro</a></span>
-                        </li>
-                <% }) %>
+                        <span>
+                            <button onclick="abrirModal('<%= book.id %>')">Eliminar libro</button>
+                        </span>
+
+                    </li>
+                    <% }) %>
             </ul>
         </section>
     </main>
+    <!-- Modal de confirmación -->
+    <div id="modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <p>¿Estás seguro de que deseas eliminar este libro?</p>
+            <button onclick="confirmarEliminacion()">Sí, eliminar</button>
+            <button onclick="cerrarModal()">Cancelar</button>
+        </div>
+    </div>
+
 </body>
+<script>
+    let libroAEliminar = null; // Guardamos el ID del libro temporalmente
+
+    function abrirModal(bookId) {
+        libroAEliminar = bookId;
+        document.getElementById('modal').style.display = 'flex';
+    }
+
+    function cerrarModal() {
+        libroAEliminar = null;
+        document.getElementById('modal').style.display = 'none';
+    }
+
+    function confirmarEliminacion() {
+        if (!libroAEliminar) return;
+
+        fetch(`/bookRoute/${libroAEliminar}`, {
+            method: 'DELETE',
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('Libro eliminado correctamente.');
+                    location.reload();  // Recarga la página para actualizar la lista
+                } else {
+                    alert('Error al eliminar el libro.');
+                }
+                cerrarModal();
+            })
+            .catch(error => {
+                console.error('Error en la petición DELETE:', error);
+                alert('Error inesperado.');
+                cerrarModal();
+            });
+    }
+
+
+</script>
+
 </html>

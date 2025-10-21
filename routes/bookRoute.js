@@ -12,9 +12,6 @@ router.get('/', (req, res) => {
     res.render("book", { user, data});
 });
 
-/**Falta hacer que rediriga a pagina de detalle, error con data, no definido
-buscar forma de hacer que data busque por id para mostrar detalle
-*/
 router.get('/:id', (req, res) => {
     const data = readData();
     const id = parseInt(req.params.id);
@@ -51,7 +48,7 @@ router.put('/:id', (req, res) => {
     res.redirect("/bookRoute");
 });
 
-router.delete('/:id/delete', (req, res) => {
+router.delete('/:id', (req, res) => {
     const data = readData();
     const id = parseInt(req.params.id);
     const bookIndex = data.books.findIndex(book => book.id === id);
