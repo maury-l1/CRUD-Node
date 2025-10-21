@@ -55,7 +55,7 @@ router.delete('/:id', (req, res) => {
     if (bookIndex === -1) return res.status(404).send('Book not found');
     data.books.splice(bookIndex, 1);
     writeData(data);
-    res.redirect("bookRoute");
+    res.status(200).send('Book deleted successfully');
 });
 
 export default router;

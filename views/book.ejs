@@ -26,60 +26,36 @@
                         <span><a href="/bookRoute/<%=book.id %>">Detalle del libro</a></span>
                         <span><a href="/bookRoute/<%=book.id %>/edit">Editar libro</a></span>
                         <span>
-                            <button onclick="abrirModal('<%= book.id %>')">Eliminar libro</button>
+                            <button onclick="eliminarLibro('<%= book.id %>')">Eliminar libro</button>
                         </span>
-
                     </li>
                     <% }) %>
             </ul>
         </section>
     </main>
-    <!-- Modal de confirmación -->
-    <div id="modal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <p>¿Estás seguro de que deseas eliminar este libro?</p>
-            <button onclick="confirmarEliminacion()">Sí, eliminar</button>
-            <button onclick="cerrarModal()">Cancelar</button>
-        </div>
-    </div>
 
-</body>
 <script>
-    let libroAEliminar = null; // Guardamos el ID del libro temporalmente
+    function eliminarLibro(bookId) {
+        if (!confirm("¿Estás seguro de que deseas eliminar este libro?")) return;
 
-    function abrirModal(bookId) {
-        libroAEliminar = bookId;
-        document.getElementById('modal').style.display = 'flex';
-    }
-
-    function cerrarModal() {
-        libroAEliminar = null;
-        document.getElementById('modal').style.display = 'none';
-    }
-
-    function confirmarEliminacion() {
-        if (!libroAEliminar) return;
-
-        fetch(`/bookRoute/${libroAEliminar}`, {
+        fetch(`/bookRoute/${bookId}`, {
             method: 'DELETE',
         })
-            .then(response => {
-                if (response.ok) {
-                    alert('Libro eliminado correctamente.');
-                    location.reload();  // Recarga la página para actualizar la lista
-                } else {
-                    alert('Error al eliminar el libro.');
-                }
-                cerrarModal();
-            })
-            .catch(error => {
-                console.error('Error en la petición DELETE:', error);
-                alert('Error inesperado.');
-                cerrarModal();
-            });
+        .then(response => {
+            if (response.ok) {
+                alert('Libro eliminado correctamente.');
+                location.reload(); // Recarga la página
+            } else {
+                alert('Error al eliminar el libro.');
+            }
+        })
+        .catch(error => {
+            console.error('Error en la petición DELETE:', error);
+            alert('Error inesperado.');
+        });
     }
-
-
 </script>
+
+</body>
 
 </html>
