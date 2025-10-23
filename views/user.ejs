@@ -13,18 +13,41 @@
         <section>
             <h2>Lista de usuarios</h2>
             <ul>
-                <% data.user.forEach(user => { %>
+                <% data.forEach(user => { %>
                     <li>
                         <strong>
                             <%= user.username %>
                         </strong>
-                        <span>Id: <%= user.id %></span>
-                        <span><a href="">Modificar usuario</a></span>
-                        <span><a href="">Eliminar usuario</a></span>
+                       <span><a href="/userRoute/<%=user.id %>">Perfil del usuario</a></span>
+                        <span><a href="/userRoute/<%=user.id %>/edit">Editar usuario</a></span>
+                        <span>
+                            <button onclick="eliminarUsuario('<%= user.id %>')">Eliminar usuario</button>
+                        </span>
                     </li>
                          <% }) %>
             </ul>
         </section>
     </main>
+    <script>
+         function eliminarUsuario(userId) {
+        if (!confirm("¿Estás seguro de que deseas eliminar este usuario?")) return;
+
+        fetch(`/userRoute/${userId}`, {
+            method: 'DELETE',
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Usuario eliminado correctamente.');
+                location.reload(); 
+            } else {
+                alert('Error al eliminar el usuario.');
+            }
+        })
+        .catch(error => {
+            console.error('Error en la petición DELETE:', error);
+            alert('Error inesperado.');
+        });
+    }
+    </script>
 </body>
 </html>

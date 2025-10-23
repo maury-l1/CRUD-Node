@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Editar Usuario</h1>
+    </header>
+    <main>
+        <form action="/userRoute/<%= user.id %>?_method=PUT" method="POST">
+            <label for="title">Username:</label>
+            <input type="text" name="username" id="username" value="<%= user.username %>" required>
+
+            <label for="author">Password:</label>
+            <input type="text" name="password" id="password" value="<%= user.password %>" required>
+
+            <button type="submit">Actualizar usuario</button>
+        </form>
+
+        <a href="/userRoute">Volver a la lista de usuarios</a>
+    </main>
+</body>
+</html>

@@ -5,7 +5,7 @@ import { SALT_ROUNDS } from './config.js'
 const {Schema}=new DBLocal({path:'./db'})
 
 const User = Schema('User',{
-    _id:{type:String,required:true},
+    id:{type:Number,required:true},
     username:{type:String,required:true},
     password:{type:String,required:true}
 })
@@ -16,16 +16,18 @@ export class UserRepository{
 
         const user=User.findOne({username})
         if (user) throw new Error('username already exists')
+        const allUsers = User.find() || []
+        const ids = allUsers.map(u => Number(u.id)).filter(id => !isNaN(id))
+        const nextId = ids.length ? Math.max(...ids) + 1 : 0
 
-        const id=crypto.randomUUID()
         const hashedPassword=await bcrypt.hash(password,SALT_ROUNDS); 
         
         User.create({
-            _id:id,
+            id:nextId,
             username,
             password:hashedPassword
         }).save()
-        return id
+        return nextId
     }
     static async login({username,password}){
         Validation.username(username)

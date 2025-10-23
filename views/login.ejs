@@ -108,7 +108,8 @@
                 },
                 body: JSON.stringify({ username, password })
             })
-                .then(res => {
+                .then(async res => {
+                    const text = await res.text();
                     console.log(res)
                     if (res.ok) {
                         registerSpan.innerText = 'Usuario registrado. ..Entrando..'
@@ -117,7 +118,7 @@
                             window.location.href = 'protected'
                         }, 1000)
                     } else {
-                        registerSpan.innerText = 'Error al registrar usuari'
+                        registerSpan.innerText = text
                         registerSpan.style.color = 'red'
                     }
                 })
